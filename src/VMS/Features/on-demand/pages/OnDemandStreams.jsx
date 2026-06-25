@@ -117,11 +117,6 @@ export default function OnDemandStreams() {
   const [selectedCamera, setSelectedCamera] = useState("All Camera");
   const [selectedAction, setSelectedAction] = useState("Action");
 
-  const [appliedSearchQuery, setAppliedSearchQuery] = useState("");
-  const [appliedStatus, setAppliedStatus] = useState("All Status");
-  const [appliedCamera, setAppliedCamera] = useState("All Camera");
-  const [appliedAction, setAppliedAction] = useState("Action");
-
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
   const [isCameraDropdownOpen, setIsCameraDropdownOpen] = useState(false);
   const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);
@@ -150,38 +145,22 @@ export default function OnDemandStreams() {
     setIsActionDropdownOpen(false);
   };
 
-  // Apply filters
-  const applyFilters = () => {
-    setAppliedSearchQuery(searchQuery);
-    setAppliedStatus(selectedStatus);
-    setAppliedCamera(selectedCamera);
-    setAppliedAction(selectedAction);
-    setCurrentPage(1);
-    closeAllDropdowns();
-  };
-
   // Reset filters
   const resetFilters = () => {
     setSearchQuery("");
     setSelectedStatus("All Status");
     setSelectedCamera("All Camera");
     setSelectedAction("Action");
-
-    setAppliedSearchQuery("");
-    setAppliedStatus("All Status");
-    setAppliedCamera("All Camera");
-    setAppliedAction("Action");
-
     setCurrentPage(1);
     closeAllDropdowns();
     setShowCheckboxes(false);
     setSelectedRequestIds([]);
   };
 
-  // Filter requests
+  // Filter requests (real-time, no apply button needed)
   const filteredRequests = useMemo(() => {
     const list = [...requests];
-    const q = appliedSearchQuery.trim().toLowerCase();
+    const q = searchQuery.trim().toLowerCase();
 
     return list.filter((req) => {
       const matchesSearch =
@@ -190,14 +169,14 @@ export default function OnDemandStreams() {
         req.camera.toLowerCase().includes(q);
 
       const matchesStatus =
-        appliedStatus === "All Status" || req.status === appliedStatus;
+        selectedStatus === "All Status" || req.status === selectedStatus;
 
       const matchesCamera =
-        appliedCamera === "All Camera" || req.camera === appliedCamera;
+        selectedCamera === "All Camera" || req.camera === selectedCamera;
 
       return matchesSearch && matchesStatus && matchesCamera;
     });
-  }, [requests, appliedSearchQuery, appliedStatus, appliedCamera]);
+  }, [requests, searchQuery, selectedStatus, selectedCamera]);
 
   // Statistics
   const totalCount = requests.length + 995;
@@ -427,10 +406,6 @@ export default function OnDemandStreams() {
 
       {/* Section Header */}
       <div className="camera-section-header">
-        <div className="camera-section-title-wrap">
-          <h2 className="camera-section-title">On Demand Streams</h2>
-        </div>
-
         <button className="btn-add-camera" onClick={() => { setEditingRequest(null); setIsSliderOpen(true); }}>
           <span className="plus-icon">+</span>
           New Stream Request
@@ -440,46 +415,46 @@ export default function OnDemandStreams() {
       {/* Metrics Row (matching styles of CameraDashboard) */}
       <div className="metrics-cards-row">
         <div className="metric-card">
-          <div className="card-chart-icon" style={{ backgroundColor: "#f3e8ff" }}>
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7c3aed" strokeWidth="2">
+          <div className="metric-details">
+            <span className="metric-label">Total Requests</span>
+            <span className="metric-value">{totalCount}</span>
+            <span className="metric-subtext font-green">↑ 12.5% from last 7 days</span>
+          </div>
+          <div className="card-chart-icon purple-card-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
               <line x1="16" y1="13" x2="8" y2="13" />
               <line x1="16" y1="17" x2="8" y2="17" />
             </svg>
           </div>
-          <div className="metric-details">
-            <span className="metric-label">Total Requests</span>
-            <span className="metric-value">{totalCount}</span>
-            <span className="metric-subtext font-green">↑ 12.5% from last 7 days</span>
-          </div>
         </div>
 
         <div className="metric-card">
-          <div className="card-chart-icon" style={{ backgroundColor: "#e8f5e9" }}>
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2e7d32" strokeWidth="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
-          </div>
           <div className="metric-details">
             <span className="metric-label">Completed</span>
             <span className="metric-value">{completedCount}</span>
             <span className="metric-subtext font-green">↑ 12.5% from last 7 days</span>
           </div>
+          <div className="card-chart-icon green-card-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
         </div>
 
         <div className="metric-card">
-          <div className="card-chart-icon" style={{ backgroundColor: "#ffebee" }}>
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c62828" strokeWidth="2">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-              <line x1="12" y1="9" x2="12" y2="13" />
-            </svg>
-          </div>
           <div className="metric-details">
             <span className="metric-label">Failed</span>
             <span className="metric-value">{failedCount}</span>
-            <span className="metric-subtext font-orange">↓ 0.7% from last 7 days</span>
+            <span className="metric-subtext font-red">↓ 0.7% from last 7 days</span>
+          </div>
+          <div className="card-chart-icon red-card-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
           </div>
         </div>
       </div>
@@ -507,33 +482,10 @@ export default function OnDemandStreams() {
             <input
               type="text"
               className="search-bar"
-              placeholder="Search Requests..."
+              placeholder="Search by request id, camera..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-          </div>
-
-          {/* Status Select */}
-          <div className="filter-dropdown-container">
-            <div className="custom-filter-dropdown" onClick={(e) => { e.stopPropagation(); const prev = isStatusDropdownOpen; closeAllDropdowns(); setIsStatusDropdownOpen(!prev); }}>
-              <div className="dropdown-selected-box">
-                <span>{selectedStatus}</span>
-                <span className="chevron-arrow">▼</span>
-              </div>
-              {isStatusDropdownOpen && (
-                <div className="dropdown-overlay-options">
-                  {statusOptions.map((item) => (
-                    <div
-                      key={item}
-                      className="dropdown-option-item"
-                      onClick={() => { setSelectedStatus(item); setIsStatusDropdownOpen(false); }}
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Camera Select */}
@@ -559,10 +511,46 @@ export default function OnDemandStreams() {
             </div>
           </div>
 
-          {/* Apply filters button */}
-          <button className="btn-apply" onClick={applyFilters}>
-            Apply Filter
-          </button>
+          {/* Status Select */}
+          <div className="filter-dropdown-container">
+            <div className="custom-filter-dropdown" onClick={(e) => { e.stopPropagation(); const prev = isStatusDropdownOpen; closeAllDropdowns(); setIsStatusDropdownOpen(!prev); }}>
+              <div className="dropdown-selected-box">
+                <span>{selectedStatus}</span>
+                <span className="chevron-arrow">▼</span>
+              </div>
+              {isStatusDropdownOpen && (
+                <div className="dropdown-overlay-options">
+                  {statusOptions.map((item) => (
+                    <div
+                      key={item}
+                      className="dropdown-option-item"
+                      onClick={() => { setSelectedStatus(item); setIsStatusDropdownOpen(false); }}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Date Range Select */}
+          <div className="filter-dropdown-container">
+            <div className="custom-filter-dropdown">
+              <div className="dropdown-selected-box">
+                <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#64748b" }}>
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  Date Range
+                </span>
+                <span className="chevron-arrow">▼</span>
+              </div>
+            </div>
+          </div>
 
           {/* Refresh/Reset filters button */}
           <button
@@ -577,11 +565,12 @@ export default function OnDemandStreams() {
               height="14"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+              <path d="M23 4v6h-6" />
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
             </svg>
           </button>
 
@@ -783,8 +772,11 @@ export default function OnDemandStreams() {
           <div className="workflow-steps-container">
             <div className="workflow-step">
               <div className="workflow-step-icon purple">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
                 </svg>
               </div>
               <div className="workflow-step-text">
@@ -793,60 +785,88 @@ export default function OnDemandStreams() {
               </div>
             </div>
 
-            <div className="workflow-connector">▶</div>
+            <div className="workflow-connector">
+              <svg width="24" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <polyline points="15 5 22 12 15 19" />
+              </svg>
+            </div>
 
             <div className="workflow-step">
               <div className="workflow-step-icon blue">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M9 11l2 2 4-4" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div className="workflow-step-text">
                 <span className="step-title">2. Validate</span>
-                <span className="step-desc">Validate access</span>
+                <span className="step-desc">Validate access & check camera</span>
               </div>
             </div>
 
-            <div className="workflow-connector">▶</div>
+            <div className="workflow-connector">
+              <svg width="24" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <polyline points="15 5 22 12 15 19" />
+              </svg>
+            </div>
 
             <div className="workflow-step">
               <div className="workflow-step-icon orange">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06" />
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.5c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
                 </svg>
               </div>
               <div className="workflow-step-text">
                 <span className="step-title">3. Orchestrate</span>
-                <span className="step-desc">Create KVS stream</span>
+                <span className="step-desc">Create KVS stream & manage session</span>
               </div>
             </div>
 
-            <div className="workflow-connector">▶</div>
+            <div className="workflow-connector">
+              <svg width="24" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <polyline points="15 5 22 12 15 19" />
+              </svg>
+            </div>
 
             <div className="workflow-step">
               <div className="workflow-step-icon green">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <rect x="2" y="3" width="20" height="4" rx="1" />
+                  <circle cx="6" cy="5" r="1" fill="#ffffff" />
+                  <circle cx="9" cy="5" r="1" fill="#ffffff" />
+                  <rect x="2" y="10" width="20" height="4" rx="1" />
+                  <circle cx="6" cy="12" r="1" fill="#ffffff" />
+                  <circle cx="9" cy="12" r="1" fill="#ffffff" />
+                  <rect x="2" y="17" width="20" height="4" rx="1" />
+                  <circle cx="6" cy="19" r="1" fill="#ffffff" />
+                  <circle cx="9" cy="19" r="1" fill="#ffffff" />
                 </svg>
               </div>
               <div className="workflow-step-text">
                 <span className="step-title">4. Transcode</span>
-                <span className="step-desc">Transcode stream</span>
+                <span className="step-desc">Transcode to multiple resolutions</span>
               </div>
             </div>
 
-            <div className="workflow-connector">▶</div>
+            <div className="workflow-connector">
+              <svg width="24" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <polyline points="15 5 22 12 15 19" />
+              </svg>
+            </div>
 
             <div className="workflow-step">
               <div className="workflow-step-icon light-blue">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 10h-1.26A8 8 0 1 0 9 20" />
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
                 </svg>
               </div>
               <div className="workflow-step-text">
                 <span className="step-title">5. Deliver</span>
-                <span className="step-desc">Make available</span>
+                <span className="step-desc">Make available for playback</span>
               </div>
             </div>
           </div>
