@@ -1,0 +1,223 @@
+/* =========================
+ */   PAGE
+.add-user-page {
+  width: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.user-form-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 8px;
+}
+
+.user-form-scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.user-form-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.user-form-scrollable::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.user-form-scrollable::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================
+   TABS
+========================= */
+.au-tabs {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.au-tab {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: #64748b;
+  padding: 6px 0;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.au-tab.active {
+  color: #111827;
+  font-weight: 600;
+  border-bottom: 2px solid #1d4ed8;
+}
+
+/* =========================
+   HEADER ✅ UPDATED
+========================= */
+.au-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+/* ✅ icon + text row */
+.header-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* ✅ FILLED USER ICON */
+.header-user-icon {
+  color: #111827;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ✅ TEXT WRAPPER */
+.header-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ TITLE */
+.au-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ✅ SUBTITLE (correct alignment — no margin-left hacks) */
+.au-subtitle {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ✅ CLOSE BUTTON */
+.au-close-btn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #374151;
+}
+
+/* =========================
+   CARD
+========================= */
+.au-card {
+  background: #ffffff;
+  border: 1px solid #dbe3ec;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.au-card-header {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+.au-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 18px;
+  padding: 14px;
+}
+
+.au-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.au-form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #1f2937;
+}
+
+.au-form-group label span {
+  color: #ef4444;
+}
+
+/* INPUTS */
+.au-form-group input,
+.au-form-group select {
+  height: 32px;
+  border: 1px solid #cfd6df;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 12px;
+  outline: none;
+}
+
+.au-form-group input:focus,
+.au-form-group select:focus {
+  border-color: #1677ff;
+  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.au-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.au-cancel-btn {
+  height: 30px;
+  min-width: 80px;
+  border: none;
+  background: #d9d9d9;
+  color: #4b5563;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.au-save-btn {
+  height: 30px;
+  min-width: 90px;
+  border: none;
+  background: #1677ff;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.au-save-btn:hover {
+  background: #125edb;
+}
+
+/* =========================
+   VALIDATION ERROR
+========================= */
+.error-input {
+  border: 1px solid #ef4444 !important;
+  background-color: #fff5f5;
+}
+
+.error-text {
+  font-size: 11px;
+  color: #ef4444;
+  margin-top: 4px;
+}

@@ -1,0 +1,61 @@
+/* VMS Specific Layout Styling */
+
+.vms-theme .app-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.vms-theme .sidebar-section-title {
+  padding: 16px 16px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #5b75a6; /* Soft blue-grey for headers */
+  letter-spacing: 0.8px;
+  user-select: none;
+}
+
+.vms-theme .sidebar-admin-footer {
+  margin-top: auto;
+  margin-bottom: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+
+/* Make sure active state works properly for VMS NavLink */
+.vms-theme .app-sidebar-item.active {
+  background-color: #1290f5 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Inactive button hover */
+.vms-theme .app-sidebar-item:not(.active):hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Adjustments for VMS sidebar spacing */
+.vms-theme .app-sidebar-menu {
+  padding: 4px 6px;
+}
+
+/* Collapsible sidebar layout support (if toggled) */
+.vms-theme.sidebar-hidden .app-sidebar {
+  transform: translateX(-100%);
+}
+.app-sidebar-button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+}
+
+.app-sidebar-button:hover {
+  cursor: pointer;
+}
+@media (max-width: 992px) {
+  .vms-theme .sidebar-admin-footer {
+    margin-top: 20px; /* Don't force auto margin on small height mobile screens */
+  }
+}

@@ -1,0 +1,574 @@
+/* =========================================
+   ROOT (IDENTICAL)
+========================================= */
+.rd-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1e293b;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   TABS
+========================================= */
+.rd-tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.rd-tab {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  padding-bottom: 9px;
+  cursor: pointer;
+}
+
+.rd-tab.active {
+  color: #0f172a;
+  font-weight: 700;
+  border-bottom: 2px solid #1a73e8;
+}
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+.rd-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.rd-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #dbe3ec;
+}
+
+.rd-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 8px 0 0 0;
+}
+
+/* BUTTON */
+.rd-primary-btn {
+  background-color: #1158d9;
+  color: #ffffff;
+  border: 1px solid #1158d9;
+  border-radius: 4px;
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.rd-primary-btn:hover {
+  background-color: #0d49b5;
+}
+
+/* =========================================
+   FILTER CARD (EXACT USER MATCH)
+========================================= */
+.rd-filter-row {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* SEARCH */
+.rd-search-box {
+  position: relative;
+  flex: 2;
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+}
+
+.rd-search-icon {
+  position: absolute;
+  left: 12px;
+  color: #64748b;
+}
+
+.rd-search-box input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0 12px 0 38px;
+  font-size: 0.875rem;
+}
+
+/* SELECTS */
+.rd-filter-row select {
+  height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0 0.875rem;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+/* INPUT */
+.rd-permission-input {
+  flex: 1.4;
+  min-width: 190px;
+  height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0 0.875rem;
+}
+
+/* BUTTONS */
+.rd-apply-btn {
+  height: 38px;
+  padding: 0 1.25rem;
+  background-color: #e2f0d9;
+  border: 1px solid #c8e6c9;
+  color: #2e7d32;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.rd-refresh-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.rd-refresh-btn:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+.refresh-icon {
+  color: #475569;
+}
+
+/* =========================================
+   TABLE CARD
+========================================= */
+/* =========================================
+   TABLE CARD (MATCH USER EXACTLY)
+========================================= */
+.rd-table-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* ✅ IMPORTANT: ADD THIS WRAPPER */
+.rd-table-outer-wrapper {
+  width: 100%;
+  height: 420px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+/* SCROLLBAR (same as user) */
+.rd-table-outer-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.rd-table-outer-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+.rd-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* HEADER */
+.rd-table th {
+  padding: 10px 16px;
+  background-color: #f8fafc;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+/* ROWS */
+.rd-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.rd-table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* =========================================
+   ✅ COLUMN ALIGNMENT FIX (VERY IMPORTANT)
+========================================= */
+
+/* Role Name */
+.rd-table th:nth-child(1),
+.rd-table td:nth-child(1) {
+  width: 35%;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* No. of Permission */
+.rd-table th:nth-child(2),
+.rd-table td:nth-child(2) {
+  width: 25%;
+  color: #334155;
+}
+
+/* Created Date */
+.rd-table th:nth-child(3),
+.rd-table td:nth-child(3) {
+  width: 25%;
+  color: #334155;
+}
+
+/* Action */
+.rd-table th:nth-child(4),
+.rd-table td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+
+/* =========================================
+   ACTION BUTTONS (MATCH USER)
+========================================= */
+.rd-icon-btn {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.rd-icon-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.rd-icon-btn.edit {
+  color: #1a73e8;
+}
+
+.rd-icon-btn.delete {
+  color: #ef5350;
+}
+
+/* EMPTY */
+.rd-empty-cell {
+  padding: 3rem 0;
+  text-align: center;
+  color: #64748b;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+.user-table-footer-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #e2e8f0;
+  background-color: #ffffff;
+}
+
+.table-info-text {
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.pagination-navbar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.btn-pagination-arrow,
+.btn-pagination-number {
+  height: 32px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #475569;
+  border-radius: 4px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-pagination-arrow {
+  width: 32px;
+}
+
+.btn-pagination-number {
+  padding: 0 0.75rem;
+  min-width: 32px;
+}
+
+.btn-pagination-arrow:hover:not([disabled]),
+.btn-pagination-number:hover {
+  background-color: #f1f5f9;
+}
+
+.btn-pagination-number.active-page {
+  background-color: #1a73e8 !important;
+  color: #ffffff !important;
+  border-color: #1a73e8 !important;
+}
+
+.btn-pagination-arrow[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  font-size: 0.85rem;
+  padding: 0 0.375rem;
+  color: #64748b;
+}
+
+/* =========================================
+   DRAWER (UNCHANGED)
+========================================= */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  height: 100vh;
+  background-color: #f8fafc;
+  box-shadow: -10px 0 25px -5px rgba(0, 0, 0, 0.15), -5px 0 10px -5px rgba(0, 0, 0, 0.05);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.drawer-container.active {
+  transform: translateX(0);
+}
+
+.drawer-content-scrollable {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Adapt AddRole and EditRole inside the drawer */
+.drawer-container .role-form-page,
+.drawer-container .edit-role-page {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.drawer-container .form-title-row,
+.drawer-container .er-header {
+  position: relative;
+  background-color: #ffffff;
+  padding: 0.5rem 1.5rem 1rem 1.5rem;
+  margin: 0;
+  border-bottom: 1px solid #cbd5e1;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.drawer-container .ua-tabs,
+.drawer-container .er-tabs {
+  display: flex;
+  background-color: #ffffff;
+  padding: 1rem 1.5rem 0.25rem 1.5rem;
+  margin: 0;
+  border-bottom: none;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.drawer-container .form-footer-actions,
+.drawer-container .er-footer {
+  position: relative;
+  background-color: #ffffff;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  border-top: 1px solid #cbd5e1;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.drawer-container .role-form-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.drawer-container .form-card,
+.drawer-container .er-card {
+  flex-shrink: 0;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 768px) {
+  .rd-filter-row {
+    flex-direction: column;
+  }
+
+  .rd-search-box,
+  .rd-filter-row select,
+  .rd-permission-input {
+    width: 100%;
+  }
+
+  .drawer-container {
+    width: 100%;
+  }
+
+  .user-table-footer-controls {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+/* Adapt grid column layouts of forms inside the sliding drawer container */
+.drawer-container .two-col-grid,
+.drawer-container .er-form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.drawer-container .permissions-split-grid,
+.drawer-container .er-permissions-split-grid {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+.drawer-container .camera-scope-split-grid,
+.drawer-container .er-camera-scope-split-grid {
+  grid-template-columns: 240px 1fr !important;
+}
+
+/* On medium viewports or when drawer gets smaller, stack permissions and camera access to single column */
+@media (max-width: 1200px) {
+  .drawer-container .two-col-grid,
+  .drawer-container .er-form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  
+  .drawer-container .permissions-split-grid,
+  .drawer-container .er-permissions-split-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  .drawer-container .permission-panel,
+  .drawer-container .er-permission-panel {
+    border-right: none !important;
+    padding-right: 0 !important;
+    padding-bottom: 16px !important;
+    border-bottom: 1px dashed #e2e8f0 !important;
+  }
+  
+  .drawer-container .permission-panel:last-child,
+  .drawer-container .er-permission-panel:last-child {
+    padding-left: 0 !important;
+    padding-top: 16px !important;
+    border-bottom: none !important;
+  }
+
+  .drawer-container .camera-scope-split-grid,
+  .drawer-container .er-camera-scope-split-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  .drawer-container .camera-scope-left-panel,
+  .drawer-container .er-camera-scope-left-panel {
+    width: 100% !important;
+  }
+}

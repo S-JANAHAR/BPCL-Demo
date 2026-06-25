@@ -1,0 +1,447 @@
+/* ==========================================================================
+   PAGE WRAPPER & ACCORDION BASE
+   ========================================================================== */
+.ch-page-wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ch-accordion {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-accordion-item {
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.ch-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.ch-accordion-item.active {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   ACCORDION HEADER
+   ========================================================================== */
+.ch-accordion-header {
+  padding: 14px 24px;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ch-accordion-header-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: brightness(0) saturate(100%) invert(4%) sepia(61%) saturate(2250%) hue-rotate(195deg) brightness(94%) contrast(98%);
+}
+
+.ch-header-settings-icon {
+  filter: brightness(0) saturate(100%) invert(4%) sepia(61%) saturate(2250%) hue-rotate(195deg) brightness(94%) contrast(98%);
+}
+
+.ch-accordion-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-accordion-header:hover {
+  background-color: #f8fafc;
+}
+
+.ch-header-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.ch-header-subtitle {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Expanded State Style */
+.ch-accordion-item.active .ch-accordion-header {
+  border-left-color: #1677ff;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  cursor: default;
+}
+
+.ch-accordion-item.active .ch-header-title {
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   ACCORDION BODY & FORMS
+   ========================================================================== */
+.ch-accordion-body {
+  padding: 24px 32px;
+  background-color: #ffffff;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.ch-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+.ch-accordion-body.scroll-hidden {
+  overflow: hidden;
+}
+
+.ch-form-group {
+  margin-bottom: 24px;
+  max-width: 100%;
+}
+
+.ch-field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.ch-field-desc {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.required {
+  color: #ef4444 !important;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   INPUTS & SELECTS
+   ========================================================================== */
+.ch-select-input,
+.ch-text-input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: #334155;
+  background-color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.ch-select-input:focus,
+.ch-text-input:focus {
+  border-color: #1677ff;
+  box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.12);
+}
+
+/* ==========================================================================
+   SECTION HEADER (INSIDE ACCORDION BODY)
+   ========================================================================== */
+.ch-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 12px;
+}
+
+.ch-body-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.ch-body-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.ch-btn-add {
+  background-color: #1677ff;
+  color: #ffffff;
+  border: 1px solid #1677ff;
+  border-radius: 6px;
+  height: 34px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.ch-btn-add:hover {
+  background-color: #0958d9;
+  border-color: #0958d9;
+}
+
+.ch-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ch-btn-cancel {
+  background-color: #d9d9d9;
+  color: #334155;
+  border: none;
+  border-radius: 6px;
+  height: 38px;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ch-btn-cancel:hover {
+  background-color: #bfbfbf;
+}
+
+.ch-btn-save {
+  background-color: #1677ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  height: 38px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ch-btn-save:hover {
+  background-color: #0958d9;
+}
+
+/* ==========================================================================
+   SCROLLABLE CARDS CONTAINER
+   ========================================================================== */
+.ch-scrollable-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+
+/* Scrollbar styling */
+.ch-scrollable-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ch-scrollable-container::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 3px;
+}
+
+.ch-scrollable-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.ch-scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   CARDS (AI RULE & STREAMING BLOCKS)
+   ========================================================================== */
+.ch-rule-card,
+.ch-profile-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.ch-card-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #64748b;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.ch-card-close-btn:hover {
+  background-color: #f1f5f9;
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* ==========================================================================
+   AI RULE GRID LAYOUT
+   ========================================================================== */
+.ch-rule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+.ch-grid-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-grid-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   STREAMING PROFILE GRID & INPUT GROUPS
+   ========================================================================== */
+.ch-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+/* Suffix wrapper for Bitrate input */
+.ch-input-suffix-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.ch-text-input-suffixed {
+  flex: 1;
+  height: 38px;
+  border: 1px solid #cbd5e1;
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: #334155;
+  background-color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ch-text-input-suffixed:focus {
+  border-color: #1677ff;
+}
+
+.ch-suffix-label {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 992px) {
+  .ch-rule-grid,
+  .ch-profile-grid,
+  .ch-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .ch-rule-grid,
+  .ch-profile-grid,
+  .ch-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ch-accordion-body {
+    padding: 16px;
+  }
+}
+
+/* Close Button for Drawer Mode */
+.close-btn {
+  border: none;
+  background: transparent;
+  color: #1e293b;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-top: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #ef4444;
+}
