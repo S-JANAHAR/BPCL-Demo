@@ -18,6 +18,7 @@ import ConfigurationHub from './DSMS/Shared/ConfigureHub/ConfigurationHub';
 import VMSLayout from './VMS/Layout/VMSLayout';
 import VMSDashboard from './VMS/Features/Dashboard/pages/Dashboard';
 import Recordings from './VMS/Features/Recording/pages/Recordings';
+import OnDemandStreams from './VMS/Features/on-demand/pages/OnDemandStreams';
 
 import './App.css';
 
@@ -66,6 +67,7 @@ export default function App() {
         ========================= */}
         <Route path="/dashboard" element={<VMSLayout />}>
           <Route index element={<VMSDashboard />} />
+          <Route path="on-demand" element={<OnDemandStreams />} />
           <Route path="recordings" element={<Recordings />} />
         </Route>
 

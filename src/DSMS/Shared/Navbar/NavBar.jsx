@@ -185,9 +185,9 @@ export default function NavBar({ userName = 'ayush', userRole = 'admin' }) {
   const menuItems = [
     {
       label: 'Dashboard',
-      to: '/dashboard',
+      to: '/dashboard/on-demand',
       icon: <DashboardIcon />,
-      match: (pathname) => pathname === '/dashboard' || pathname === '/'
+      match: (pathname) => pathname.startsWith('/dashboard') || pathname === '/'
     },
     {
       label: 'Camera Management',
